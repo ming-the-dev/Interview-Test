@@ -1,0 +1,25 @@
+<div class="wrapper">
+  <h2 class="heading">Tour of Heroes</h2>
+  <p *ngIf="updatedHero != null">{{updatedHero.name}} updated with 
+    <span *ngFor="let stat of updatedHero.stats, let i=index">
+      {{i==updatedHero.stats.length-1?'and':''}} {{stat.key}} of {{stat.value}}{{i==updatedHero.stats.length-1?'.':', '}}
+    </span>
+    <span></span>
+  </p>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Power</th>
+      <th *ngFor="let stat of heroes[0]?.stats">
+        <span *ngIf="stat">Stat({{stat.key | titlecase }})</span>
+      </th>
+      <th class="action">Action</th>
+    </tr>
+    <tr *ngFor="let hero of heroes; let i=index">
+      <td class="{{randomClass[i]}} cell name">{{hero.name}}</td>
+      <td class="{{randomClass[i]}} cell power">{{hero.power}}</td>
+      <td class="{{randomClass[i]}} cell stat" *ngFor="let stat of hero?.stats"><span *ngIf="stat">{{stat.value}}</span></td>
+      <td class="{{randomClass[i]}} cell action"><button (click)="evolve(hero)">Evolve</button></td>
+    </tr>
+  </table>
+</div>

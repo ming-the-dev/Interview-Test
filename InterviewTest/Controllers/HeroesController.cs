@@ -14,14 +14,62 @@ namespace InterviewTest.Controllers
         private Hero[] heroes = new Hero[] {
                new Hero()
                {
-                   name= "Hulk",
-                   power="Strength from gamma radiation",
-                   stats=
+                   name = "Hulk",
+                   power = "Strength from gamma radiation",
+                   stats =
                    new List<KeyValuePair<string, int>>()
                    {
                        new KeyValuePair<string, int>( "strength", 5000 ),
                        new KeyValuePair<string, int>( "intelligence", 50),
                        new KeyValuePair<string, int>( "stamina", 2500 )
+                   }
+               },
+               new Hero()
+               {
+                   name = "Iron Man",
+                   power = "His suit",
+                   stats =
+                   new List<KeyValuePair<string, int>>()
+                   {
+                       new KeyValuePair<string, int>( "strength", 5000 ),
+                       new KeyValuePair<string, int>( "intelligence", 2000),
+                       new KeyValuePair<string, int>( "stamina", 5000 )
+                   }
+               },
+               new Hero()
+               {
+                   name = "Thor",
+                   power = "Asgardian God of Thunder",
+                   stats =
+                   new List<KeyValuePair<string, int>>()
+                   {
+                       new KeyValuePair<string, int>( "strength", 5000 ),
+                       new KeyValuePair<string, int>( "intelligence", 1000),
+                       new KeyValuePair<string, int>( "stamina", 3000 )
+                   }
+               },
+               new Hero()
+               {
+                   name = "Captain America",
+                   power = "Injected with Super-Soldier Serum",
+                   stats =
+                   new List<KeyValuePair<string, int>>()
+                   {
+                       new KeyValuePair<string, int>( "strength", 3000 ),
+                       new KeyValuePair<string, int>( "intelligence", 1500),
+                       new KeyValuePair<string, int>( "stamina", 4000 )
+                   }
+               },
+               new Hero()
+               {
+                   name = "Black Widow",
+                   power = "Trained as a KBG operative and dangerous assassin",
+                   stats =
+                   new List<KeyValuePair<string, int>>()
+                   {
+                       new KeyValuePair<string, int>( "strength", 500 ),
+                       new KeyValuePair<string, int>( "intelligence", 1500),
+                       new KeyValuePair<string, int>( "stamina", 1000 )
                    }
                }
             };
@@ -42,8 +90,17 @@ namespace InterviewTest.Controllers
 
         // POST: api/Heroes
         [HttpPost]
-        public void Post([FromBody] string value)
+        public Hero Post([FromBody] Hero hero, string action = "none")
         {
+            var query = this.heroes.Where(item => item.name == hero.name);
+            Hero selectedHero = query.FirstOrDefault();
+
+            if (action == "evolve" && selectedHero != null)
+            {
+                selectedHero.evolve();
+                return selectedHero;
+            }
+            return null;
         }
 
         // PUT: api/Heroes/5

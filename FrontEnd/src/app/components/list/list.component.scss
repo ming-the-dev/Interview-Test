@@ -1,0 +1,51 @@
+.wrapper {
+  margin: 60px;
+}
+.heading {
+  text-align: center;
+  color: blue;
+}
+table{
+  width: 100%;
+  border-collapse: collapse;
+}
+th, .cell{
+  border: 2px solid black;
+  padding: 5px;
+}
+.name, .stat {
+  text-align: center;
+}
+.color1 {
+  font-weight: 200;
+  color: red;
+  background-color: rgba(255, 0, 0, 0.3);
+}
+.color2 {
+  font-weight: 400;
+  color: green;
+  background-color: rgba(0, 255, 0, 0.3);
+}
+.color3 {
+    font-weight: 600;
+    color: blue;
+    background-color: rgba(0,0,255,0.3);
+}
+.color4 {
+    font-weight: 800;
+    color: purple;
+    background-color: rgba(128,0,128,0.3);
+}
+td.action {
+  // display: flex;
+  position: relative;
+  justify-content: center;
+}
+.action {
+  width: 80px;
+}
+button {
+  left: 50%;
+  margin: 5px;
+  width: calc(100% - 10px);
+}
